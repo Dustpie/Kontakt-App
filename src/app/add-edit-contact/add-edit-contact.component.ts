@@ -100,8 +100,7 @@ export class AddEditContactComponent implements OnInit {
   }
 
   get addressControls() {
-    const address = this.contactForm.get('addresses') as FormArray;
-    return address ? address.controls : [];
+    return (this.contactForm.get('addresses') as FormArray).controls;
   }
 
   dateConversion(date: Date): string {
@@ -126,10 +125,6 @@ export class AddEditContactComponent implements OnInit {
       Contacts[contactIndex] = this.contact;
     }
     this.router.navigate(['']);
-  }
-
-  getAddresses(): FormArray {
-    return this.contactForm.get('addresses') as FormArray;
   }
 
   dateChanged(event: Event) {

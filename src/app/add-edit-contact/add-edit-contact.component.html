@@ -31,10 +31,7 @@
     <!-- FormArray Addresse -->
     <div formArrayName="addresses">
       <div
-        *ngFor="
-          let addressGroup of contactForm.get('addresses')?.controls;
-          let i = index
-        "
+        *ngFor="let addressGroup of addressControls; let i = index"
         [formGroupName]="i"
       >
         <div class="mb-3 row">
