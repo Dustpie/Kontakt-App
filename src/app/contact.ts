@@ -1,9 +1,8 @@
-import { Adress } from "./adress";
+import { Addresses } from './adress';
 
 export interface Contact {
-    id:  number | null;
-    name: string ;
-    birthDate: Date ;
-
-    adress:  Adress ;
+  id: number | null;
+  name: string;
+  birthDate: Date;
+  addresses: Addresses[];
 }

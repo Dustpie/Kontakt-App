@@ -11,16 +11,16 @@
                 {{ contact.birthDate | date : "dd/MM/YY" }}
               </p>
             </div>
-
-            <div class="box-height">
-              <p class="card-text">
-                {{ contact.adress.street }} {{ contact.adress.houseNumber }}
-              </p>
-              <p class="card-text"></p>
-              <p class="card-text">{{ contact.adress.plz }}</p>
-              <p class="card-text">{{ contact.adress.town }}</p>
-              <p class="card-text">{{ contact.adress.country }}</p>
-            </div>
+            <ng-container *ngFor="let address of contact.addresses">
+              <div class="box-height">
+                <p class="card-text">
+                  {{ address.street }} {{ address.houseNumber }}
+                </p>
+                <p class="card-text"></p>
+                <p class="card-text">{{ address.zip }} {{ address.town }}</p>
+                <p class="card-text">{{ address.country }}</p>
+              </div>
+            </ng-container>
           </div>
         </div>
 
@@ -37,4 +37,3 @@
     </div>
   </div>
 </div>
-s

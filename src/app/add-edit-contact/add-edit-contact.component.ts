@@ -20,13 +20,7 @@ export class AddEditContactComponent implements OnInit {
     id: 0,
     name: 'Dennis',
     birthDate: new Date('2023-08-23'),
-    adress: {
-      street: '',
-      houseNumber: null,
-      plz: null,
-      town: '',
-      country: '',
-    },
+    addresses: [],
   };
 
   contactForm: FormGroup = this.formbuilder.group({
@@ -36,22 +30,24 @@ export class AddEditContactComponent implements OnInit {
       Validators.compose([Validators.required, Validators.minLength(2)]),
     ],
     birthDate: [null, Validators.required],
-    adress: this.formbuilder.group({
-      street: [
-        null,
-        Validators.compose([Validators.required, Validators.minLength(4)]),
-      ],
-      houseNumber: [null, Validators.required],
-      plz: [null, Validators.required],
-      town: [
-        null,
-        Validators.compose([Validators.required, Validators.minLength(3)]),
-      ],
-      country: [
-        null,
-        Validators.compose([Validators.required, Validators.minLength(4)]),
-      ],
-    }),
+    addresses: this.formbuilder.array([
+      this.formbuilder.group({
+        street: [
+          null,
+          Validators.compose([Validators.required, Validators.minLength(4)]),
+        ],
+        houseNumber: [null, Validators.required],
+        zip: [null, Validators.required],
+        town: [
+          null,
+          Validators.compose([Validators.required, Validators.minLength(3)]),
+        ],
+        country: [
+          null,
+          Validators.compose([Validators.required, Validators.minLength(4)]),
+        ],
+      }),
+    ]),
   });
 
   ngOnInit(): void {
@@ -61,29 +57,51 @@ export class AddEditContactComponent implements OnInit {
       let contactById = Contacts.find((x) => x.id == id)!;
       this.contact = contactById;
 
+      const addressArray = this.contact.addresses.map((address) => {
+        return this.formbuilder.group({
+          street: [
+            address.street,
+            [Validators.required, Validators.minLength(4)],
+          ],
+          houseNumber: [address.houseNumber, Validators.required],
+          plz: [address.zip, Validators.required],
+          town: [address.town, [Validators.required, Validators.minLength(3)]],
+          country: [
+            address.country,
+            [Validators.required, Validators.minLength(4)],
+          ],
+        });
+      });
+
+      console.log(addressArray);
+
       this.contactForm.setValue({
         id: this.contact.id,
         name: this.contact.name,
         birthDate: this.dateConversion(this.contact.birthDate),
-
-        adress: {
-          street: this.contact.adress.street,
-          houseNumber: this.contact.adress.houseNumber,
-          plz: this.contact.adress.plz,
-          town: this.contact.adress.town,
-          country: this.contact.adress.country,
-        },
+        addresses: this.formbuilder.array(addressArray),
       });
     } else {
       this.contact.id = Contacts.length;
       this.contact.name = '';
       this.contact.birthDate = new Date('yyyy-MM-dd');
-      this.contact.adress.street = '';
-      this.contact.adress.houseNumber = null;
-      this.contact.adress.plz = null;
-      this.contact.adress.town = '';
-      this.contact.adress.country = '';
+      this.contact.addresses = [
+        {
+          street: '',
+          houseNumber: null,
+          zip: null,
+          town: '',
+          country: '',
+        },
+      ];
     }
+
+    console.log(this.contactForm.get('addresses'));
+  }
+
+  get addressControls() {
+    const address = this.contactForm.get('addresses') as FormArray;
+    return address ? address.controls : [];
   }
 
   dateConversion(date: Date): string {
@@ -108,6 +126,10 @@ export class AddEditContactComponent implements OnInit {
       Contacts[contactIndex] = this.contact;
     }
     this.router.navigate(['']);
+  }
+
+  getAddresses(): FormArray {
+    return this.contactForm.get('addresses') as FormArray;
   }
 
   dateChanged(event: Event) {

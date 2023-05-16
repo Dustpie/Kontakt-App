@@ -1,7 +1,9 @@
-export interface Adress {
+export interface Addresses {
   street: string;
   houseNumber: number | undefined | null;
-  plz: number | null;
+  zip: number | null;
   town: string | undefined;
   country: string | undefined;
 }
+
+export type AddressArray = Addresses[];
