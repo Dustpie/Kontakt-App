@@ -1,0 +1,40 @@
+<div class="window">
+  <div class="contactCard" *ngFor="let contact of contacts; let i = index">
+    <div class="card">
+      <h5 class="card-header">ID : {{ i }}</h5>
+      <div class="card-body">
+        <div class="contactDataDiv">
+          <div class="contactData">
+            <div class="box-height">
+              <h5 class="card-title">{{ contact.name }}</h5>
+              <p class="card-text">
+                {{ contact.birthDate | date : "dd/MM/YY" }}
+              </p>
+            </div>
+
+            <div class="box-height">
+              <p class="card-text">
+                {{ contact.adress.street }} {{ contact.adress.houseNumber }}
+              </p>
+              <p class="card-text"></p>
+              <p class="card-text">{{ contact.adress.plz }}</p>
+              <p class="card-text">{{ contact.adress.town }}</p>
+              <p class="card-text">{{ contact.adress.country }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <a
+            routerLink="/edit/{{ contact.id }}"
+            class="btn btn-primary"
+            style="margin-right: 20px"
+            >Edit</a
+          >
+          <a (click)="deleteContact(contact)" class="btn btn-primary">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+s
