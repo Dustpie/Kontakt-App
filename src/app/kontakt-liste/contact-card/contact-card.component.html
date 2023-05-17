@@ -1,0 +1,35 @@
+<div class="card">
+  <h5 class="card-header">ID : {{ i }}</h5>
+  <div class="card-body">
+    <div class="contactDataDiv">
+      <div class="contactData">
+        <div class="box-height">
+          <h5 class="card-title">{{ contact.name }}</h5>
+          <p class="card-text">
+            {{ contact.birthDate | date : "dd/MM/YY" }}
+          </p>
+        </div>
+        <ng-container *ngFor="let address of contact.addresses">
+          <div class="box-height">
+            <p class="card-text">
+              {{ address.street }} {{ address.houseNumber }}
+            </p>
+            <p class="card-text"></p>
+            <p class="card-text">{{ address.zip }} {{ address.town }}</p>
+            <p class="card-text">{{ address.country }}</p>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <a
+        routerLink="/edit/{{ contact.id }}"
+        class="btn btn-primary"
+        style="margin-right: 20px"
+        >Edit</a
+      >
+      <a (click)="deleteContact(contact)" class="btn btn-primary">Delete</a>
+    </div>
+  </div>
+</div>
