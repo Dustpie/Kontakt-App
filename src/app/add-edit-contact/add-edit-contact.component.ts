@@ -2,7 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Contact } from '../contact';
 import { Contacts } from '../mock-contacts';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormArray,
+  AbstractControl,
+} from '@angular/forms';
+import { ContactService } from '../contactService';
 
 @Component({
   selector: 'app-add-edit-contact',
@@ -13,7 +20,8 @@ export class AddEditContactComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private formbuilder: FormBuilder
+    private formbuilder: FormBuilder,
+    private contactService: ContactService
   ) {}
 
   contact: Contact = {
@@ -23,6 +31,8 @@ export class AddEditContactComponent implements OnInit {
     addresses: [],
   };
 
+  contacts = this.contactService.contacts;
+
   contactForm: FormGroup = this.formbuilder.group({
     id: null,
     name: [
@@ -30,25 +40,36 @@ export class AddEditContactComponent implements OnInit {
       Validators.compose([Validators.required, Validators.minLength(2)]),
     ],
     birthDate: [null, Validators.required],
-    addresses: this.formbuilder.array([
-      this.formbuilder.group({
-        street: [
-          null,
-          Validators.compose([Validators.required, Validators.minLength(4)]),
-        ],
-        houseNumber: [null, Validators.required],
-        zip: [null, Validators.required],
-        town: [
-          null,
-          Validators.compose([Validators.required, Validators.minLength(3)]),
-        ],
-        country: [
-          null,
-          Validators.compose([Validators.required, Validators.minLength(4)]),
-        ],
-      }),
-    ]),
+
+    addresses: this.formbuilder.array([]),
   });
+
+  get addressArray(): FormArray {
+    return this.contactForm.get('addresses') as FormArray;
+  }
+
+  createAddressFormGroup(): FormGroup {
+    return this.formbuilder.group({
+      street: [
+        null,
+        Validators.compose([Validators.required, Validators.minLength(4)]),
+      ],
+      houseNumber: [null, Validators.required],
+      zip: [null, Validators.required],
+      town: [
+        null,
+        Validators.compose([Validators.required, Validators.minLength(3)]),
+      ],
+      country: [
+        null,
+        Validators.compose([Validators.required, Validators.minLength(4)]),
+      ],
+    });
+  }
+
+  castAsFormGroup(control: AbstractControl): FormGroup {
+    return control as FormGroup;
+  }
 
   ngOnInit(): void {
     if (this.router.url != '/create') {
@@ -73,27 +94,16 @@ export class AddEditContactComponent implements OnInit {
         });
       });
 
-      console.log(addressArray);
-
       this.contactForm.setValue({
         id: this.contact.id,
         name: this.contact.name,
         birthDate: this.dateConversion(this.contact.birthDate),
-        addresses: this.formbuilder.array(addressArray),
+        addresses: this.contact.addresses,
       });
     } else {
       this.contact.id = Contacts.length;
       this.contact.name = '';
       this.contact.birthDate = new Date('yyyy-MM-dd');
-      this.contact.addresses = [
-        {
-          street: '',
-          houseNumber: null,
-          zip: null,
-          town: '',
-          country: '',
-        },
-      ];
     }
 
     console.log(this.contactForm.get('addresses'));
@@ -124,11 +134,23 @@ export class AddEditContactComponent implements OnInit {
     } else {
       Contacts[contactIndex] = this.contact;
     }
+    this.contactService.addContact();
     this.router.navigate(['']);
   }
 
   dateChanged(event: Event) {
     let val = (event.target as HTMLInputElement).value;
     this.contact.birthDate = new Date(val);
+  }
+
+  addAddress(): void {
+    this.addressArray.push(this.createAddressFormGroup());
+  }
+
+  deleteAddress(): void {
+    let lastItem = this.addressArray.length - 1;
+    if (lastItem >= 0) {
+      this.addressArray.removeAt(lastItem);
+    }
   }
 }
