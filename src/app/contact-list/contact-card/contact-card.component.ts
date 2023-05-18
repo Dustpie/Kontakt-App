@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Contact } from '../../contact';
-import { Contacts } from '../../mock-contacts';
+import { __param } from 'tslib';
+import { ContactService } from 'src/app/contactService';
 
 @Component({
   selector: 'app-contact-card',
@@ -8,10 +9,11 @@ import { Contacts } from '../../mock-contacts';
   styleUrls: ['./contact-card.component.scss'],
 })
 export class ContactCardComponent {
-  contacts: Contact[] = Contacts;
+  @Input() contact: any;
+
+  constructor(private contactService: ContactService) {}
 
   deleteContact(contact: Contact): void {
-    let index = Contacts.indexOf(contact);
-    Contacts.splice(index, 1);
+    this.contactService.deleteContact(contact);
   }
 }

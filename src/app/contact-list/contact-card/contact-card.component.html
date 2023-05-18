@@ -1,35 +1,39 @@
-<!-- <div class="card">
-  <h5 class="card-header">ID : {{ i }}</h5>
-  <div class="card-body">
-    <div class="contactDataDiv">
-      <div class="contactData">
-        <div class="box-height">
-          <h5 class="card-title">{{ contact.name }}</h5>
-          <p class="card-text">
-            {{ contact.birthDate | date : "dd/MM/YY" }}
-          </p>
-        </div>
-        <ng-container *ngFor="let address of contact.addresses">
+<div class="contactCard">
+  <div class="card">
+    <h5 class="card-header">{{ contact.id }}</h5>
+    <div class="card-body">
+      <div class="contactDataDiv">
+        <div class="contactData">
           <div class="box-height">
+            <h5 class="card-title">{{ contact.name }}</h5>
+            <p class="card-text">{{ contact.birthDate | date : "dd/MM/YY" }}</p>
+          </div>
+
+          <div
+            class="box-height"
+            *ngFor="let address of contact.addresses; let i = index"
+          >
             <p class="card-text">
-              {{ address.street }} {{ address.houseNumber }}
+              {{ contact.addresses[i].street }}
+              {{ contact.addresses[i].houseNumber }}
             </p>
             <p class="card-text"></p>
-            <p class="card-text">{{ address.zip }} {{ address.town }}</p>
-            <p class="card-text">{{ address.country }}</p>
+            <p class="card-text">{{ contact.addresses[i].plz }}</p>
+            <p class="card-text">{{ contact.addresses[i].town }}</p>
+            <p class="card-text">{{ contact.addresses[i].country }}</p>
           </div>
-        </ng-container>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <a
+          routerLink="/edit/{{ contact.id }}"
+          class="btn btn-primary"
+          style="margin-right: 20px"
+          >Edit</a
+        >
+        <a (click)="deleteContact(contact)" class="btn btn-primary">Delete</a>
       </div>
     </div>
-
-    <div class="buttons">
-      <a
-        routerLink="/edit/{{ contact.id }}"
-        class="btn btn-primary"
-        style="margin-right: 20px"
-        >Edit</a
-      >
-      <a (click)="deleteContact(contact)" class="btn btn-primary">Delete</a>
-    </div>
   </div>
-</div> -->
+</div>
