@@ -23,6 +23,7 @@ export class ContactList implements OnInit {
     const startIndex = rowIndex * 3;
     return this.contacts.slice(startIndex, startIndex + 3);
   }
+
   deleteContact(contact: Contact): void {
     let index = Contacts.indexOf(contact);
     Contacts.splice(index, 1);
