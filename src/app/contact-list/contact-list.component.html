@@ -1,7 +1,7 @@
 <div class="window">
   <div class="contactCard" *ngFor="let contact of contacts; index as i">
     <div class="card">
-      <h5 class="card-header">ID : {{ i }}</h5>
+      <h5 class="card-header">ID: {{ i }}</h5>
       <div class="card-body">
         <div class="contactDataDiv">
           <div class="contactData">
@@ -35,4 +35,9 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="window">
+  <app-card class="contactCard" *ngFor="let contact of contacts; index as i">
+  </app-card>
 </div>

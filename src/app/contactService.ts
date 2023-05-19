@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Contacts } from './mock-contacts';
 import { Contact } from './contact';
 
 @Injectable({
@@ -8,29 +7,27 @@ import { Contact } from './contact';
 export class ContactService {
   constructor() {}
 
-  contacts: Contact[] = Contacts;
-
   getContact() {
     let arrayFromLocalStorage = localStorage.getItem('contacts');
-
+    let contacts;
     if (arrayFromLocalStorage != null) {
-      this.contacts = JSON.parse(arrayFromLocalStorage);
+      const contacts = JSON.parse(arrayFromLocalStorage);
     }
-    return this.contacts;
+    return contacts;
   }
 
   addContact(): void {
-    localStorage.setItem('contacts', JSON.stringify(this.contacts));
+    localStorage.setItem('contacts', JSON.stringify(contacts));
   }
 
   deleteContact(contact: Contact): void {
     let arrayFromLocalStorage = localStorage.getItem('contacts');
 
     if (arrayFromLocalStorage != null) {
-      this.contacts === JSON.parse(arrayFromLocalStorage);
+      contacts === JSON.parse(arrayFromLocalStorage);
     }
-    let index = this.contacts.indexOf(contact);
-    this.contacts.splice(index, 1);
-    localStorage.setItem('contacts', JSON.stringify(this.contacts));
+    let index = contacts.indexOf(contact);
+    contacts.splice(index, 1);
+    localStorage.setItem('contacts', JSON.stringify(contacts));
   }
 }

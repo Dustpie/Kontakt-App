@@ -1,36 +1,36 @@
 .container-fluid {
-    img {
-        height: 30px;
-        margin-right: 50px;
-        &:hover {
-            cursor: pointer;
-        }
+  img {
+    height: 30px;
+    margin-right: 50px;
+    &:hover {
+      cursor: pointer;
     }
+  }
 }
 
 .navbar {
-    background-color: #FFFFFF !important;
-    box-shadow: 2px 2px 2px lightgrey;
+  background-color: #ffffff !important;
+  box-shadow: 2px 2px 2px lightgrey;
 }
 
 @media (max-width: 1000px) {
-    .collapse {
-        display: block !important;
-    }
+  .collapse {
+    display: block !important;
+  }
 
-    .home {
-        display: none;
-    }
+  .home {
+    display: none;
+  }
 
-    .container-fluid {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-    }
+  .container-fluid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
 
-    .nav-link {
-        width: 60px !important;
-        margin-right: 0;
-    }
+  .nav-link {
+    width: 60px !important;
+    margin-right: 0;
+  }
 }
