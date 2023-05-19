@@ -14,13 +14,13 @@
             *ngFor="let address of contact.addresses; let i = index"
           >
             <p class="card-text">
-              {{ contact.addresses[i].street }}
-              {{ contact.addresses[i].houseNumber }}
+              {{ address.street }}
+              {{ address.houseNumber }}
             </p>
             <p class="card-text"></p>
-            <p class="card-text">{{ contact.addresses[i].plz }}</p>
-            <p class="card-text">{{ contact.addresses[i].town }}</p>
-            <p class="card-text">{{ contact.addresses[i].country }}</p>
+            <p class="card-text">{{ address.zip }}</p>
+            <p class="card-text">{{ address.town }}</p>
+            <p class="card-text">{{ address.country }}</p>
           </div>
         </div>
       </div>
