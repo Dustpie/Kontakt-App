@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Contact } from '../contact';
-import { Contacts } from '../mock-contacts';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-card',

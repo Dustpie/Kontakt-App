@@ -3,11 +3,11 @@ import { Contact } from '../contact';
 import { Contacts } from '../mock-contacts';
 
 @Component({
-  selector: 'app-kontakt-liste',
-  templateUrl: './kontakt-liste.component.html',
-  styleUrls: ['./kontakt-liste.component.scss'],
+  selector: 'app-contact-list',
+  templateUrl: './contact-list.component.html',
+  styleUrls: ['./contact-list.component.scss'],
 })
-export class ContactList implements OnInit {
+export class ContactListComponent implements OnInit {
   contacts: Contact[] = Contacts;
 
   ngOnInit(): void {}

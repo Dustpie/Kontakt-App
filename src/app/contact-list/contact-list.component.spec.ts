@@ -1,18 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ContactList } from './kontakt-liste.component';
-import { Contact } from '../contact';
+import { ContactListComponent } from './contact-list.component';
 
 describe('KontaktListeComponent', () => {
-  let component: ContactList;
+  let component: ContactListComponent;
 
-  let fixture: ComponentFixture<ContactList>;
+  let fixture: ComponentFixture<ContactListComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ContactList],
+      declarations: [ContactListComponent],
     });
-    fixture = TestBed.createComponent(ContactList);
+    fixture = TestBed.createComponent(ContactListComponent);
 
     component = fixture.componentInstance;
     fixture.detectChanges();

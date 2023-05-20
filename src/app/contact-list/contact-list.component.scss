@@ -1,4 +1,4 @@
-.contactCard {
+:host .contactCard {
   margin-left: 15px;
   margin-right: 15px;
   margin-top: 15px;
@@ -8,7 +8,7 @@
   width: 600px;
 }
 
-.window {
+:host .window {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -16,32 +16,32 @@
   margin-bottom: 30px;
 }
 
-.row {
+:host .row {
   width: 100rem;
   margin: 1rem;
 }
 
-.card-text {
+:host .card-text {
   margin: 0;
 }
 
-.box-height {
+:host .box-height {
   display: flex;
   flex-direction: column;
   height: 100%;
   justify-content: center;
 }
 
-.btn {
+:host .btn {
   background-color: #006299;
 }
 
-.contactDataDiv {
+:host .contactDataDiv {
   background-color: #f8f8f8;
   width: 100%;
 }
 
-.contactData {
+:host .contactData {
   width: 70%;
   display: flex;
   flex-direction: row;
@@ -50,7 +50,7 @@
   padding: 10px;
 }
 
-.buttons {
+:host .buttons {
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -71,7 +71,7 @@
     width: 100%;
   }
 
-  .contactData {
+  :host .contactData {
     justify-content: space-between;
     width: 100%;
   }

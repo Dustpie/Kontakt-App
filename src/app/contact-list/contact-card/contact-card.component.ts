@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Contact } from '../../contact';
 import { __param } from 'tslib';
 import { ContactService } from 'src/app/contactService';
+import { Contacts } from 'src/app/mock-contacts';
 
 @Component({
   selector: 'app-contact-card',
@@ -9,7 +10,7 @@ import { ContactService } from 'src/app/contactService';
   styleUrls: ['./contact-card.component.scss'],
 })
 export class ContactCardComponent {
-  @Input() contact: any;
+  @Input() contact!: Contact;
 
   constructor(private contactService: ContactService) {}
 

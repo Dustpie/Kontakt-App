@@ -6,7 +6,7 @@ import { AddEditContactComponent } from './add-edit-contact/add-edit-contact.com
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContactCardComponent } from './contact-list/contact-card/contact-card.component';
-import { ContactList } from './contact-list/kontakt-liste.component';
+import { ContactListComponent } from './contact-list/contact-list.component';
 import { CardBodyComponent } from './card/card-body/card-body.component';
 import { CardFooterComponent } from './card/card-footer/card-footer.component';
 import { CardHeaderComponent } from './card/card-header/card-header.component';
@@ -14,7 +14,7 @@ import { CardComponent } from './card/card.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ContactList,
+    ContactListComponent,
     AddEditContactComponent,
     ContactCardComponent,
     CardBodyComponent,
