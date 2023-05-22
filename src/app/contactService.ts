@@ -1,33 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Contact } from './contact';
+import { Contacts } from './mock-contacts';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContactService {
+  contacts: Contact[] = Contacts;
   constructor() {}
 
   getContact() {
     let arrayFromLocalStorage = localStorage.getItem('contacts');
-    let contacts;
     if (arrayFromLocalStorage != null) {
-      const contacts = JSON.parse(arrayFromLocalStorage);
+      this.contacts = JSON.parse(arrayFromLocalStorage);
     }
-    return contacts;
+    return this.contacts;
   }
 
   addContact(): void {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
+    localStorage.setItem('contacts', JSON.stringify(this.contacts));
   }
 
   deleteContact(contact: Contact): void {
     let arrayFromLocalStorage = localStorage.getItem('contacts');
 
     if (arrayFromLocalStorage != null) {
-      contacts === JSON.parse(arrayFromLocalStorage);
+      this.contacts === JSON.parse(arrayFromLocalStorage);
     }
-    let index = contacts.indexOf(contact);
-    contacts.splice(index, 1);
-    localStorage.setItem('contacts', JSON.stringify(contacts));
+    let index = this.contacts.indexOf(contact);
+    this.contacts.splice(index, 1);
+    localStorage.setItem('contacts', JSON.stringify(this.contacts));
   }
 }
