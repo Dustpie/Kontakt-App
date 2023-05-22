@@ -11,6 +11,7 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 import { CardComponent } from './card/card.component';
 import { CardHeaderComponent } from './card/card-header/card-header.component';
 import { CardFooterComponent } from './card/card-footer/card-footer.component';
+import { AdressComponent } from './adress/adress.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { CardFooterComponent } from './card/card-footer/card-footer.component';
     CardComponent,
     CardHeaderComponent,
     CardFooterComponent,
+    AdressComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
