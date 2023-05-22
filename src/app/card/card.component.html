@@ -1,13 +1,11 @@
 <div class="window">
-  <app-card-header
-    ><ng-content select=".card-header"></ng-content
-  ></app-card-header>
+  <app-card-header></app-card-header>
   <!-- Body -->
   <div class="contactCard">
-    <div class="card"><ng-content></ng-content></div>
+    <div class="card">
+      <ng-content></ng-content>
+    </div>
   </div>
   <!-- Footer -->
-  <app-card-footer
-    ><ng-content select=".card-footer"></ng-content
-  ></app-card-footer>
+  <app-card-footer></app-card-footer>
 </div>
