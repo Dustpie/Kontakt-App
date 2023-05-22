@@ -9,6 +9,8 @@ import { ContactCardComponent } from './contact-list/contact-card/contact-card.c
 import { ContactListComponent } from './contact-list/contact-list.component';
 
 import { CardComponent } from './card/card.component';
+import { CardHeaderComponent } from './card/card-header/card-header.component';
+import { CardFooterComponent } from './card/card-footer/card-footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,6 +18,8 @@ import { CardComponent } from './card/card.component';
     AddEditContactComponent,
     ContactCardComponent,
     CardComponent,
+    CardHeaderComponent,
+    CardFooterComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],

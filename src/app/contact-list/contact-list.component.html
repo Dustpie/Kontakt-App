@@ -1,47 +1,15 @@
 <div class="window">
-  <div class="contactCard" *ngFor="let contact of contacts; index as i">
-    <div class="card">
-      <h5 class="card-header">ID: {{ i }}</h5>
-      <div class="card-body">
-        <div class="contactDataDiv">
-          <div class="contactData">
-            <div class="box-height">
-              <h5 class="card-title">{{ contact.name }}</h5>
-              <p class="card-text">
-                {{ contact.birthDate | date : "dd/MM/YY" }}
-              </p>
-            </div>
-            <ng-container *ngFor="let address of contact.addresses">
-              <div class="box-height">
-                <p class="card-text">
-                  {{ address.street }} {{ address.houseNumber }}
-                </p>
-                <p class="card-text">{{ address.zip }} {{ address.town }}</p>
-                <p class="card-text">{{ address.country }}</p>
-              </div>
-            </ng-container>
-          </div>
-        </div>
-
-        <div class="buttons">
-          <a
-            routerLink="/edit/{{ contact.id }}"
-            class="btn btn-primary"
-            style="margin-right: 20px"
-            >Edit</a
-          >
-          <a (click)="deleteContact(contact)" class="btn btn-primary">Delete</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <h1>Content Projection ng-content</h1>
 </div>
 
-<div class="window"><h1>Content Projection</h1></div>
-
 <div class="window">
-  <app-card class="contactCard" *ngFor="let contact of contacts; index as i">
-    <h5 class="card-header">ID: {{ i }}</h5>
+  <app-card *ngFor="let contact of contacts; index as i">
+    <!-- Header -->
+    <app-card-header>
+      <h5>ID: {{ i }}</h5>
+    </app-card-header>
+
+    <!-- Body -->
     <div class="card-body">
       <div class="contactDataDiv">
         <div class="contactData">
@@ -63,14 +31,38 @@
         </div>
       </div>
     </div>
-    <div class="buttons card-footer">
-      <a
-        routerLink="/edit/{{ contact.id }}"
-        class="btn btn-primary"
-        style="margin-right: 20px"
-        >Edit</a
-      >
-      <a (click)="deleteContact(contact)" class="btn btn-primary">Delete</a>
+
+    <!-- Footer -->
+    <app-card-footer
+      ><div class="buttons">
+        <a
+          routerLink="/edit/{{ contact.id }}"
+          class="btn btn-primary"
+          style="margin-right: 20px"
+          >Edit</a
+        >
+        <a (click)="deleteContact(contact)" class="btn btn-primary">Delete</a>
+      </div></app-card-footer
+    ></app-card
+  >
+</div>
+
+<!-- Dummy Card Test -->
+<div class="window"><h2>Dummy Test</h2></div>
+<div class="window">
+  <app-card *ngFor="let contact of contacts; let i = index">
+    <app-card-header
+      ><h5>Dummy Text {{ i }}</h5></app-card-header
+    >
+
+    <div class="card-body">
+      Der coolste Content den sie je gesehen haben! Kaufen SIE 111111111 JETZT
+      11111
     </div>
+    <app-card-footer
+      ><div class="buttons">
+        <a href="" class="btn btn-primary">Test Button</a>
+      </div></app-card-footer
+    >
   </app-card>
 </div>
