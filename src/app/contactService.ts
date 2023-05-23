@@ -1,34 +1,47 @@
 import { Injectable } from '@angular/core';
 import { Contact } from './contact';
-import { Contacts } from './mock-contacts';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContactService {
-  contacts: Contact[] = Contacts;
   constructor() {}
 
-  getContact() {
-    let arrayFromLocalStorage = localStorage.getItem('contacts');
-    if (arrayFromLocalStorage != null) {
-      this.contacts = JSON.parse(arrayFromLocalStorage);
+  getContacts() {
+    let dataFromStorage = localStorage.getItem('contacts');
+    if (dataFromStorage != null) {
+      let parsedData = JSON.parse(dataFromStorage);
+      return parsedData;
     }
-    return this.contacts;
   }
 
-  addContact(): void {
-    localStorage.setItem('contacts', JSON.stringify(this.contacts));
+  setContacts(contacts: Contact[]) {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
   }
 
-  deleteContact(contact: Contact): void {
-    let arrayFromLocalStorage = localStorage.getItem('contacts');
+  addContacts(contact: Contact): void {
+    let allContacts = this.getContacts();
+    allContacts.push(contact);
+    this.sortContacts(allContacts);
+    localStorage.setItem('contacts', JSON.stringify(allContacts));
+  }
 
-    if (arrayFromLocalStorage != null) {
-      this.contacts === JSON.parse(arrayFromLocalStorage);
+  deleteContact(id: number): void {
+    let allContacts = this.getContacts();
+
+    allContacts.splice(id, 1);
+    console.log(allContacts);
+    this.sortContacts(allContacts);
+    localStorage.setItem('contacts', JSON.stringify(allContacts));
+  }
+
+  sortContacts(allContacts: Contact[]) {
+    for (let i = 0; i < allContacts.length; i++) {
+      let contact = allContacts[i];
+      contact.id = i;
     }
-    let index = this.contacts.indexOf(contact);
-    this.contacts.splice(index, 1);
-    localStorage.setItem('contacts', JSON.stringify(this.contacts));
+  }
+  refreshPage() {
+    window.location.reload();
   }
 }

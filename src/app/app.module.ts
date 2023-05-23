@@ -12,6 +12,10 @@ import { CardComponent } from './card/card.component';
 import { CardHeaderComponent } from './card/card-header/card-header.component';
 import { CardFooterComponent } from './card/card-footer/card-footer.component';
 import { AdressComponent } from './adress/adress.component';
+import { CardBodyComponent } from './card/card-body/card-body.component';
+import { DisplayFieldComponent } from './display-field/display-field.component';
+import { ContactService } from './contactService';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,9 +26,11 @@ import { AdressComponent } from './adress/adress.component';
     CardHeaderComponent,
     CardFooterComponent,
     AdressComponent,
+    CardBodyComponent,
+    DisplayFieldComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
-  providers: [],
+  providers: [ContactService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

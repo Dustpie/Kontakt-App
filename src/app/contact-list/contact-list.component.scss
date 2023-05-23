@@ -1,9 +1,8 @@
-.window {
+.display-wrap {
+  width: 100%;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
-  justify-content: center;
-  margin-bottom: 30px;
+  flex-wrap: wrap;
 }
 
 .row {
@@ -38,17 +37,6 @@
   justify-content: space-between;
   margin-bottom: 15px;
   padding: 10px;
-}
-
-.buttons {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  text-align: center !important;
-
-  a {
-    border-radius: 3px;
-  }
 }
 
 @media (max-width: 650px) {

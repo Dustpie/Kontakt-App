@@ -8,7 +8,7 @@ import { Contacts } from '../mock-contacts';
   styleUrls: ['./contact-list.component.scss'],
 })
 export class ContactListComponent implements OnInit {
-  contacts: Contact[] = Contacts;
+  contacts: Contact[] = [];
 
   ngOnInit(): void {}
 
@@ -27,5 +27,10 @@ export class ContactListComponent implements OnInit {
   deleteContact(contact: Contact): void {
     let index = Contacts.indexOf(contact);
     Contacts.splice(index, 1);
+  }
+
+  dateConversion(date: Date): string {
+    let newDate = new Date(date);
+    return newDate.toJSON('T')[0];
   }
 }

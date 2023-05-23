@@ -31,7 +31,7 @@ export class AddEditContactComponent implements OnInit {
     addresses: [],
   };
 
-  contacts = this.contactService.contacts;
+  contacts = localStorage.getItem('contacts');
 
   contactForm: FormGroup = this.formbuilder.group({
     id: null,
@@ -85,7 +85,7 @@ export class AddEditContactComponent implements OnInit {
             [Validators.required, Validators.minLength(4)],
           ],
           houseNumber: [address.houseNumber, Validators.required],
-          plz: [address.zip, Validators.required],
+          zip: [address.zip, Validators.required],
           town: [address.town, [Validators.required, Validators.minLength(3)]],
           country: [
             address.country,
@@ -101,7 +101,7 @@ export class AddEditContactComponent implements OnInit {
         addresses: this.contact.addresses,
       });
     } else {
-      this.contact.id = Contacts.length;
+      this.contact.id = this.contacts ? this.contacts.length : 0;
       this.contact.name = '';
       this.contact.birthDate = new Date('yyyy-MM-dd');
     }
@@ -134,7 +134,7 @@ export class AddEditContactComponent implements OnInit {
     } else {
       Contacts[contactIndex] = this.contact;
     }
-    this.contactService.addContact();
+    this.contactService.addContacts(this.contact);
     this.router.navigate(['']);
   }
 
