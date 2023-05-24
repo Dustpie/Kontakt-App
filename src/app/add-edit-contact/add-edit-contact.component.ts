@@ -55,7 +55,14 @@ export class AddEditContactComponent implements OnInit {
         Validators.compose([Validators.required, Validators.minLength(4)]),
       ],
       houseNumber: [null, Validators.required],
-      zip: [null, Validators.required],
+      zip: [
+        null,
+        Validators.compose([
+          null,
+          Validators.minLength(4),
+          Validators.required,
+        ]),
+      ],
       town: [
         null,
         Validators.compose([Validators.required, Validators.minLength(3)]),

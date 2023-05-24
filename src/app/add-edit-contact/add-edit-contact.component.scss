@@ -6,34 +6,10 @@
   height: calc(100vh - 150px);
 }
 
-.form-control.ng-invalid {
-  border: 1px solid red;
-}
-
 .contactFormular {
   width: 700px;
   padding: 20px;
-
   box-shadow: 2px 2px 5px 5px rgb(214, 214, 219);
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-.form-control {
-  border-radius: 3px !important;
-}
-
-.btn {
-  margin-left: 20px;
-  width: 120px;
-  background-color: #006299;
-  border-radius: 3px;
 }
 
 .right {
@@ -43,7 +19,7 @@
 }
 
 @media (max-width: 650px) {
-  .add-edit-contact {
+  .window {
     justify-content: flex-start;
     height: unset;
     margin: 0px;
@@ -53,12 +29,6 @@
   .right {
     justify-content: center;
     gap: 10px;
-  }
-  .btn {
-    margin-left: 20px;
-    width: 80px;
-    background-color: #006299;
-    border-radius: 3px;
   }
 
   .contactFormular {
@@ -79,6 +49,7 @@
   flex-direction: row;
   margin-right: 10px;
 }
+
 .street-input {
-  margin-right: 10px; // or the amount of space you want
+  margin-right: 10px;
 }

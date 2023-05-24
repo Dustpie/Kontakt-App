@@ -1,9 +1,11 @@
 <div class="window">
   <form [formGroup]="contactForm" (ngSubmit)="save()" class="contactFormular">
     <div>
-      <label for="exampleInputEmail1" class="form-label"
-        ><h4>ID = {{ contact.id }}</h4></label
-      >
+      <h2>
+        <label for="exampleInputEmail1" class="form-label"
+          >ID = {{ contact.id }}</label
+        >
+      </h2>
     </div>
     <div class="form-field-container">
       <mat-form-field>
@@ -45,6 +47,7 @@
                 placeholder="Street*"
                 class="street-input"
               />
+
               <input
                 matInput
                 type="number"
@@ -53,11 +56,15 @@
                 placeholder="Nr.*"
               />
             </div>
-
             <mat-label
               *ngIf="contactForm.get('street')?.hasError('minlength')"
               class="text-warning"
               >Text too short</mat-label
+            >
+            <mat-label
+              *ngIf="contactForm.get('zip')?.hasError('minlength')"
+              class="text-warning"
+              >Postcode too short</mat-label
             >
           </mat-form-field>
           <mat-form-field>
