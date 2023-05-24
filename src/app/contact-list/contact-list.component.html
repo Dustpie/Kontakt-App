@@ -1,35 +1,47 @@
 <div class="display-wrap">
-  <app-card *ngFor="let contact of contacts; let i = index">
-    <!-- Header -->
-    <app-card-header> ID: {{ i }} </app-card-header>
+  <mat-grid-list cols="4" rowHeight="35rem" gutterSize="3rem">
+    <mat-grid-tile *ngFor="let contact of contacts; let i = index">
+      <app-card>
+        <!-- Header -->
+        <app-card-header> ID: {{ i }} </app-card-header>
 
-    <!-- Body -->
-    <app-card-body>
-      {{ contact.name }}
-      <p class="card-text">
-        {{ contact.birthDate | date : "dd/MM/YY" }}
-      </p>
-      <!-- Address -->
-      <div *ngFor="let address of contact.addresses">
-        <div class="box-height">
-          <p class="card-text">
-            {{ address.street }} {{ address.houseNumber }}
-          </p>
-          <p class="card-text">{{ address.zip }} {{ address.town }}</p>
-          <p class="card-text">{{ address.country }}</p>
-        </div>
-      </div></app-card-body
-    >
+        <!-- Body -->
+        <app-card-body>
+          <h2>{{ contact.name }}</h2>
+          <p class="mat-body-1">{{ contact.birthDate | date : "dd/MM/YY" }}</p>
+          <!-- Address -->
+          <div>
+            <div *ngFor="let address of contact.addresses">
+              <div class="address-content">
+                <p class="mat-body-1">
+                  {{ address.street }} {{ address.houseNumber }}
+                </p>
+                <p class="mat-body-1">{{ address.zip }} {{ address.town }}</p>
+                <p class="mat-body-1">{{ address.country }}</p>
+              </div>
+            </div>
+          </div>
+        </app-card-body>
 
-    <!-- Footer -->
-    <app-card-footer>
-      <a
-        routerLink="/edit/{{ contact.id }}"
-        class="btn btn-primary"
-        style="margin-right: 20px"
-        >Edit</a
-      >
-      <a (click)="deleteContact(contact)" class="btn btn-primary">Delete</a>
-    </app-card-footer></app-card
+        <!-- Footer -->
+        <app-card-footer>
+          <button
+            mat-raised-button
+            color="primary"
+            routerLink="/edit/{{ contact.id }}"
+          >
+            Edit
+          </button>
+
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="deleteContact(contact)"
+          >
+            Delete
+          </button>
+        </app-card-footer>
+      </app-card>
+    </mat-grid-tile></mat-grid-list
   >
 </div>

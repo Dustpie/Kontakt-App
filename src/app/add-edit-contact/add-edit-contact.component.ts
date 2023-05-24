@@ -127,7 +127,7 @@ export class AddEditContactComponent implements OnInit {
   }
 
   save(): void {
-    if (!this.contactForm.valid) {
+    if (!this.contactForm.valid && this.contactForm.dirty) {
       alert('Bitte alle Felder ausfüllen!');
       return;
     }
