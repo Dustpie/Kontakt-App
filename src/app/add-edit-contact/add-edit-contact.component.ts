@@ -31,7 +31,7 @@ export class AddEditContactComponent implements OnInit {
     addresses: [],
   };
 
-  contacts = localStorage.getItem('contacts');
+  contacts: Contact[] = [];
 
   contactForm: FormGroup = this.formbuilder.group({
     id: null,
@@ -72,10 +72,11 @@ export class AddEditContactComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.contacts = this.contactService.getContacts();
     if (this.router.url != '/create') {
       let id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
 
-      let contactById = Contacts.find((x) => x.id == id)!;
+      let contactById = this.contacts.find((x) => x.id == id)!;
       this.contact = contactById;
 
       const addressArray = this.contact.addresses.map((address) => {
@@ -126,21 +127,16 @@ export class AddEditContactComponent implements OnInit {
 
     this.contact = this.contactForm.value;
     console.log(this.contact);
-    let contactIndex = Contacts.findIndex((x) => x.id == this.contact.id);
+    let contactIndex = this.contacts.findIndex((x) => x.id == this.contact.id);
 
     if (contactIndex == -1) {
-      this.contact.id = Contacts.length;
-      Contacts.push(this.contact);
+      this.contact.id = this.contacts.length;
+      this.contacts.push(this.contact);
     } else {
-      Contacts[contactIndex] = this.contact;
+      this.contacts[contactIndex] = this.contact;
     }
     this.contactService.addContacts(this.contact);
     this.router.navigate(['']);
-  }
-
-  dateChanged(event: Event) {
-    let val = (event.target as HTMLInputElement).value;
-    this.contact.birthDate = new Date(val);
   }
 
   addAddress(): void {

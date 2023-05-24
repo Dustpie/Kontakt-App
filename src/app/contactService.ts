@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Contact } from './contact';
+import { Contacts } from './mock-contacts';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,10 @@ export class ContactService {
     if (dataFromStorage != null) {
       let parsedData = JSON.parse(dataFromStorage);
       return parsedData;
+    } else {
+      localStorage.setItem('contacts', JSON.stringify(Contacts));
+      let mockData = Contacts;
+      return mockData;
     }
   }
 
@@ -41,6 +46,7 @@ export class ContactService {
       contact.id = i;
     }
   }
+
   refreshPage() {
     window.location.reload();
   }

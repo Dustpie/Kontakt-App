@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Contact } from '../contact';
-import { Contacts } from '../mock-contacts';
+import { Router } from '@angular/router';
+import { ContactService } from '../contactService';
 
 @Component({
   selector: 'app-contact-list',
@@ -10,7 +11,11 @@ import { Contacts } from '../mock-contacts';
 export class ContactListComponent implements OnInit {
   contacts: Contact[] = [];
 
-  ngOnInit(): void {}
+  constructor(private contactService: ContactService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.contacts = this.contactService.getContacts();
+  }
 
   getRowIndexes(): number[] {
     const rowCount = Math.ceil(this.contacts.length / 3);
@@ -25,8 +30,12 @@ export class ContactListComponent implements OnInit {
   }
 
   deleteContact(contact: Contact): void {
-    let index = Contacts.indexOf(contact);
-    Contacts.splice(index, 1);
+    if (contact.id != null) {
+      this.contactService.deleteContact(contact.id);
+    }
+
+    this.router.navigate(['']);
+    this.contactService.refreshPage();
   }
 
   dateConversion(date: Date): string {
