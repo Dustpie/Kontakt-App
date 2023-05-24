@@ -15,6 +15,7 @@ import { AdressComponent } from './adress/adress.component';
 import { CardBodyComponent } from './card/card-body/card-body.component';
 import { DisplayFieldComponent } from './display-field/display-field.component';
 import { ContactService } from './contactService';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { ContactService } from './contactService';
     CardBodyComponent,
     DisplayFieldComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule],
   providers: [ContactService],
   bootstrap: [AppComponent],
 })
