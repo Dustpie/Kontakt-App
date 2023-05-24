@@ -1,107 +1,120 @@
-<div class="add-edit-contact">
+<div class="window">
   <form [formGroup]="contactForm" (ngSubmit)="save()" class="contactFormular">
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label"
-        >ID = {{ contact.id }}</label
-      >
-    </div>
-    <div class="mb-3">
-      <input
-        type="text"
-        class="form-control"
-        formControlName="name"
-        placeholder="Name*"
-      />
-      <label
-        *ngIf="contactForm.get('name')?.hasError('minlength')"
-        class="text-warning"
-        >*Name not long enough</label
-      >
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Birthdate*</label>
-      <input
-        type="date"
-        style="width: 150px"
-        class="form-control"
-        name="birthDate"
-        formControlName="birthDate"
-      />
-    </div>
-
-    <ng-container *ngFor="let address of addressArray.controls; let i = index">
-      <ng-container [formGroup]="castAsFormGroup(address)">
-        <div class="mb-3 row">
-          <input
-            type="text"
-            class="form-control"
-            style="width: 70%"
-            formControlName="street"
-            placeholder="Street*"
-          />
-          <input
-            type="number"
-            class="form-control"
-            style="width: 20%"
-            formControlName="houseNumber"
-            placeholder="Nr.*"
-          />
-          <label
-            *ngIf="contactForm.get('street')?.hasError('minlength')"
-            class="text-warning"
-            >*Text too short</label
-          >
-        </div>
-        <div class="mb-3">
-          <input
-            type="number"
-            class="form-control"
-            formControlName="zip"
-            placeholder="Postcode*"
-          />
-        </div>
-        <div class="mb-3">
-          <input
-            type="text"
-            class="form-control"
-            formControlName="town"
-            placeholder="Town*"
-          />
-          <label
-            *ngIf="contactForm.get('addresses.town')?.hasError('minlength')"
-            class="text-warning"
-            >*Text too short</label
-          >
-        </div>
-        <div class="mb-3">
-          <input
-            type="text"
-            class="form-control"
-            formControlName="country"
-            placeholder="Country*"
-          />
-          <label
-            *ngIf="contactForm.get('country')?.hasError('minlength')"
-            class="text-warning"
-            >*Text too short</label
-          >
-        </div>
-      </ng-container>
-    </ng-container>
-
-    <div *ngIf="!contactForm.valid">
-      <p style="color: red">Please fill all fields*</p>
-    </div>
     <div>
-      <Button type="button" (click)="deleteAddress()">Remove Address</Button>
-      <Button type="button" (click)="addAddress()">Add Address</Button>
+      <label for="exampleInputEmail1" class="form-label"
+        ><h4>ID = {{ contact.id }}</h4></label
+      >
     </div>
+    <div class="form-field-container">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="Name*"
+          formControlName="name"
+        />
+        <mat-label
+          *ngIf="contactForm.get('name')?.hasError('minlength')"
+          class="text-warning"
+          >Name not long enough</mat-label
+        >
+      </mat-form-field>
 
-    <div class="right">
-      <button type="submit" class="btn btn-primary">Submit</button>
-      <button type="button" class="btn btn-primary" routerLink="/">
-        Cancel
-      </button>
+      <mat-form-field>
+        <mat-label>Birthdate*</mat-label>
+        <input
+          matInput
+          type="date"
+          style="width: 150px"
+          name="birthDate"
+          formControlName="birthDate"
+        />
+      </mat-form-field>
+
+      <ng-container
+        *ngFor="let address of addressArray.controls; let i = index"
+      >
+        <ng-container [formGroup]="castAsFormGroup(address)">
+          <mat-form-field>
+            <div class="input-field">
+              <input
+                matInput
+                type="text"
+                style="width: 70%"
+                formControlName="street"
+                placeholder="Street*"
+                class="street-input"
+              />
+              <input
+                matInput
+                type="number"
+                style="width: 20%"
+                formControlName="houseNumber"
+                placeholder="Nr.*"
+              />
+            </div>
+
+            <mat-label
+              *ngIf="contactForm.get('street')?.hasError('minlength')"
+              class="text-warning"
+              >Text too short</mat-label
+            >
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="number"
+              formControlName="zip"
+              placeholder="Postcode*"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              formControlName="town"
+              placeholder="Town*"
+            />
+            <mat-label
+              *ngIf="contactForm.get('addresses.town')?.hasError('minlength')"
+              class="text-warning"
+              >Text too short</mat-label
+            >
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              formControlName="country"
+              placeholder="Country*"
+            />
+            <mat-label
+              *ngIf="contactForm.get('country')?.hasError('minlength')"
+              class="text-warning"
+              >*Text too short</mat-label
+            >
+          </mat-form-field>
+        </ng-container>
+      </ng-container>
+      <!-- Adressen Löschen/Hinzufügen -->
+      <div>
+        <button mat-stroked-button (click)="deleteAddress($event)">
+          Remove Address
+        </button>
+        <button mat-stroked-button (click)="addAddress($event)">
+          Add Address
+        </button>
+      </div>
+
+      <div *ngIf="!contactForm.valid">
+        <p style="color: red">Please fill all fields*</p>
+      </div>
+      <!-- Submit/Cancel -->
+
+      <div class="right">
+        <button mat-raised-button type="submit" color="primary">Submit</button>
+        <button mat-raised-button color="primary" routerLink="/">Cancel</button>
+      </div>
     </div>
   </form>
 </div>

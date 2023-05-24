@@ -1,70 +1,84 @@
-.add-edit-contact {
-    margin: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 150px);
+.window {
+  margin: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 150px);
 }
 
 .form-control.ng-invalid {
-    border:1px solid red;
+  border: 1px solid red;
 }
 
 .contactFormular {
-    
-    width: 700px;
-    padding: 20px;
-    
-    box-shadow: 2px 2px 5px 5px  rgb(214, 214, 219) ;
+  width: 700px;
+  padding: 20px;
+
+  box-shadow: 2px 2px 5px 5px rgb(214, 214, 219);
 }
 
 .row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 .form-control {
-    border-radius: 3px !important;
+  border-radius: 3px !important;
 }
 
 .btn {
-    margin-left: 20px;
-    width: 120px;
-    background-color: #006299;
-    border-radius: 3px;
+  margin-left: 20px;
+  width: 120px;
+  background-color: #006299;
+  border-radius: 3px;
 }
 
 .right {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
-@media (max-width: 650px){
-    .add-edit-contact {
-        justify-content: flex-start;
-        height: unset;
-        margin: 0px;
-        margin-top: 30px;
-    }
+@media (max-width: 650px) {
+  .add-edit-contact {
+    justify-content: flex-start;
+    height: unset;
+    margin: 0px;
+    margin-top: 30px;
+  }
 
-    .right {
-        justify-content: center;
-    }
-    .btn {
-        margin-left: 20px;
-        width: 80px;
-        background-color: #006299;
-        border-radius: 3px;
-    }
+  .right {
+    justify-content: center;
+    gap: 10px;
+  }
+  .btn {
+    margin-left: 20px;
+    width: 80px;
+    background-color: #006299;
+    border-radius: 3px;
+  }
 
-    .contactFormular {
-    
-        width: 100%;
-        padding: 20px;
-        box-shadow: none;
-    }
+  .contactFormular {
+    width: 100%;
+    padding: 20px;
+    box-shadow: none;
+  }
+}
+
+.form-field-container {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: row;
+  margin-right: 10px;
+}
+.street-input {
+  margin-right: 10px; // or the amount of space you want
 }

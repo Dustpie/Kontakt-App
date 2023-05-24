@@ -76,7 +76,7 @@ export class AddEditContactComponent implements OnInit {
     if (this.router.url != '/create') {
       let id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
 
-      let contactById = this.contacts.find((x) => x.id == id)!;
+      let contactById = Contacts.find((x) => x.id == id)!;
       this.contact = contactById;
 
       const addressArray = this.contact.addresses.map((address) => {
@@ -99,7 +99,7 @@ export class AddEditContactComponent implements OnInit {
         id: this.contact.id,
         name: this.contact.name,
         birthDate: this.dateConversion(this.contact.birthDate),
-        addresses: this.contact.addresses,
+        addresses: addressArray,
       });
     } else {
       this.contact.id = this.contacts ? this.contacts.length : 0;
@@ -127,23 +127,32 @@ export class AddEditContactComponent implements OnInit {
 
     this.contact = this.contactForm.value;
     console.log(this.contact);
-    let contactIndex = this.contacts.findIndex((x) => x.id == this.contact.id);
+    let contactIndex = Contacts.findIndex((x) => x.id == this.contact.id);
 
     if (contactIndex == -1) {
-      this.contact.id = this.contacts.length;
-      this.contacts.push(this.contact);
+      this.contact.id = Contacts.length;
+      Contacts.push(this.contact);
     } else {
-      this.contacts[contactIndex] = this.contact;
+      Contacts[contactIndex] = this.contact;
     }
     this.contactService.addContacts(this.contact);
     this.router.navigate(['']);
   }
 
-  addAddress(): void {
-    this.addressArray.push(this.createAddressFormGroup());
+  dateChanged(event: Event) {
+    let val = (event.target as HTMLInputElement).value;
+    this.contact.birthDate = new Date(val);
   }
 
-  deleteAddress(): void {
+  addAddress(event: Event): void {
+    event.preventDefault();
+    (this.contactForm.get('addresses') as FormArray).push(
+      this.createAddressFormGroup()
+    );
+  }
+
+  deleteAddress(event: Event): void {
+    event.preventDefault();
     let lastItem = this.addressArray.length - 1;
     if (lastItem >= 0) {
       this.addressArray.removeAt(lastItem);
