@@ -5,4 +5,5 @@ export interface Contact {
   name: string;
   birthDate: Date;
   addresses: Addresses[];
+  isOrganization: boolean;
 }

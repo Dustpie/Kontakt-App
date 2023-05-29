@@ -29,6 +29,7 @@ export class AddEditContactComponent implements OnInit {
     name: 'Dennis',
     birthDate: new Date('2023-08-23'),
     addresses: [],
+    isOrganization: false,
   };
 
   contacts: Contact[] = [];
