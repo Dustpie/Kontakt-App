@@ -1,5 +1,5 @@
 <div class="display-wrap">
-  <mat-grid-list cols="4" rowHeight="18rem" gutterSize="2rem">
+  <mat-grid-list cols="4" rowHeight="20rem" gutterSize="2rem">
     <mat-grid-tile *ngFor="let contact of contacts; let i = index">
       <app-card>
         <!-- Header -->
@@ -9,8 +9,9 @@
         <app-card-body>
           <h2>{{ contact.name }}</h2>
           <p class="mat-body-1">{{ contact.birthDate | date : "dd/MM/YY" }}</p>
+
           <!-- Address -->
-          <div>
+          <div class="address-list">
             <div *ngFor="let address of contact.addresses">
               <div class="address-content">
                 <p class="mat-body-1">

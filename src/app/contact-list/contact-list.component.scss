@@ -15,9 +15,31 @@ mat-grid-tile {
 
 app-card {
   width: 100%;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16); /* Add your desired box-shadow */
+  border: 1px solid #ccc; /* Add a subtle border */
+  border-radius: 8px; /* Add border radius for a rounded card */
 }
 
 app-card-body {
   max-height: 200px;
+}
+
+.address-list {
   overflow-y: auto;
+  max-height: 100px;
+  border: 1px solid #ccc; /* Make the border subtle */
+  border-radius: 8px; /* Make the edges of the border rounded */
+  box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.06); /* Add an inset shadow for a distinct look */
+}
+.address-content {
+  border-bottom: 1px solid #ccc;
+  padding: 1rem;
+}
+
+.address-content:last-child {
+  border-bottom: none;
+}
+
+app-card-footer {
+  margin-top: 1rem;
 }
