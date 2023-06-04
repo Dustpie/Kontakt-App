@@ -11,7 +11,7 @@ import { CardHeaderComponent } from './card/card-header/card-header.component';
 import { CardFooterComponent } from './card/card-footer/card-footer.component';
 import { AdressComponent } from './adress/adress.component';
 import { CardBodyComponent } from './card/card-body/card-body.component';
-import { DisplayFieldComponent } from './display-field/display-field.component';
+
 import { ContactService } from './contactService';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
@@ -32,7 +32,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
     CardFooterComponent,
     AdressComponent,
     CardBodyComponent,
-    DisplayFieldComponent,
   ],
   imports: [
     BrowserModule,
